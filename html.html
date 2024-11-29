@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oat U2</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="css.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="js.js"></script>
+</head>
+<body>
+    <header>SITE INCOMPLETO (AINDA)</header>
+    <main>
+        <div id="fundo" class="fundo">
+            <div id="caderno" class="caderno">
+                <div id="pagina" class="pagina">
+                    <div id="registro" class="registro">
+                        <div class="perfil">
+                            <img id="perfilImagem" src="img/perfil.jpg" class="img-fluid img-thumbnail foto" alt="Perfil">
+                            <div class="desc">
+                         
+                                <p id="nomeDesc" class="info">
+                                    Nome: 
+                                    <span id="nomeDisplay">------</span>
+                                    <input type="text" id="nomeEdit" class="form-control" style="display:none;">
+                                </p>
+                                <p id="idadeDesc" class="info">
+                                    Idade: 
+                                    <span id="idadeDisplay">------</span>
+                                    <input type="number" id="idadeEdit" class="form-control" style="display:none;">
+                                </p>
+                                <p id="alturaDesc" class="info">
+                                    Altura: 
+                                    <span id="alturaDisplay">------</span>
+                                    <input type="number" id="alturaEdit" class="form-control" style="display:none;">
+                                </p>
+                                <p id="pesoDesc" class="info">
+                                    Peso: 
+                                    <span id="pesoDisplay">------</span>
+                                    <input type="number" id="pesoEdit" class="form-control" style="display:none;">
+                                </p>
+                                <p id="generoDesc" class="info">
+                                    Gênero: 
+                                    <span id="generoDisplay">------</span>
+                                    <select id="generoEdit" class="form-control" style="display:none;">
+                                        <option value="masculino">Masculino</option>
+                                        <option value="feminino">Feminino</option>
+                                        <option value="outro">Outro</option>
+                                    </select>
+                                </p>
+                                <input type="file" id="imagemEdit" class="form-control" style="display:none;">
+                            </div>
+                        </div>
+                    </div>
+                           
+                        <div class="divisoria-segunda">
+                            <img src="img/crop-0-0-1024-152-0-black_divider.png" alt="Segunda Divisória">
+                        </div>
+                        <div class="nota">
+                            <p>Anotações:
+                                <a id="notaLink" contenteditable="false">SUS</a>
+                            </p>
+                        </div> 
+                        <div class="divisoria">
+                            <img src="img/crop-0-0-1024-152-0-black_divider.png" alt="Divisória">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="botoes" class="botoes">
+            <button type="button" class="btn btn-dark btn-lg primario border border-white">🔍︎ Adicionar Suspeito</button>
+            <button type="button" class="btn btn-success dist" data-bs-toggle="button" aria-pressed="true">✎ Editar</button>
+            <button type="button" class="btn btn-danger">✕ Apagar</button>
+        </div>
+
+        <!-- Formulario -->
+        <div id="formOverlay" class="overlay">
+            <div id="form-container" class="formulario">
+                <button type="button" id="fchrForm" class="btn-close"></button>
+                <h3>Dados do Suspeito:</h3>
+                <form id="userForm">
+                    <div class="grupo-form">
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" name="nome" class="form-control" required>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label for="idade">Idade:</label>
+                        <input type="number" id="idade" name="idade" class="form-control" required>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label for="altura">Altura (em cm):</label>
+                        <input type="number" id="altura" name="altura" class="form-control" required>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label for="peso">Peso (em kg):</label>
+                        <input type="number" id="peso" name="peso" class="form-control" required>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label for="genero">Gênero:</label>
+                        <select id="genero" name="genero" class="form-control" required>
+                            <option value="masculino">Masculino</option>
+                            <option value="feminino">Feminino</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label for="imagem">Imagem:</label>
+                        <input type="file" id="imagem" name="imagem" class="form-control">
+                    </div>
+
+                    <div class="grupo-form">
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

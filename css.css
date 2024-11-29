@@ -1,0 +1,387 @@
+.fundo {
+    background-image: url(img/bg.jpg);
+    height: 100vh; 
+    width: 100%;   
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-size: cover; 
+}
+
+.caderno {
+    position: fixed; 
+    bottom: 0;      
+    left: 50%;      
+    transform: translateX(-50%);
+    background-image: url(img/notebook.png);
+    height: 98vh;    
+    width: 40vw;     
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.pagina {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: inset(0.24em 0.6em 0em 2.7em); 
+    overflow: hidden;  
+}
+
+.registro {
+    width: 100%;
+    height: 33%;
+    background-color: red;
+    overflow: hidden;
+}
+
+.perfil {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 8.2%;
+}
+
+.perfil .foto {
+    width: 8em;
+    height: 8em;
+    object-fit: contain;
+    margin-right: 20px;
+}
+
+.botoes{
+    position: fixed; 
+    bottom: 5%;      
+    left: 5%;
+}
+
+.primario {
+    display: block;
+    margin-bottom: 0.3em;
+}
+
+.dist{
+    margin-right: 2.4em;
+}
+
+.desc {
+    font-family: 'Lucida Sans Unicode', sans-serif;
+    font-size: 1.1em;
+    font-weight: bold;
+    line-height: 1.5;
+    color: #333;
+    text-transform: capitalize;
+    margin-top: 0.5em;
+}
+
+.desc p {
+    margin: 0.01em 0;
+}
+
+.desc a {
+    font-weight: normal;
+    padding-left: 0.2em;
+}
+
+.nota {
+    font-family: 'Lucida Sans Unicode', sans-serif;
+    font-size: 1.1em;
+    font-weight: bold;
+    line-height: 1.5;
+    color: #333;
+    text-transform: capitalize;
+    margin-top: 0.2em;
+    margin-left: 8.2%;
+}
+
+.nota p {
+    margin: 0.01em 0;
+}
+
+.nota a {
+    font-weight: normal;
+    padding-left: 0.2em;
+}
+
+
+.divisoria {
+    width: 100%;
+    text-align: center;
+    margin-top: 0.3em; 
+    height: 0.5em;
+}
+
+.divisoria img {
+    width: 100%;
+    max-width: 60em;
+    height: 0.2em;
+}
+
+.divisoria-segunda {
+    width: 100%;
+    text-align: center;
+    margin-top: 0.3em; 
+    height: 0.5em;
+}
+
+.divisoria-segunda img {
+    width: 100%;
+    max-width: 60em; 
+    height: 0.2em;     
+}
+#registro .desc input,
+#registro .desc select {
+    width: auto;
+    display: inline-block; 
+    margin-left: 10px; 
+    vertical-align: middle; 
+    max-width: 10em; 
+}
+
+
+#registro .desc input[type="text"],
+#registro .desc input[type="number"],
+#registro .desc select {
+    padding: 0.1em;
+    font-size: 0.76rem; 
+}
+
+#registro .desc p.info {
+    display: flex;  
+    align-items: center;  
+    margin-bottom: 0.38em; 
+}
+
+#registro .desc p span {
+    margin-right: 10px; 
+
+}
+
+#registro .desc input,
+#registro .desc select {
+    align-items: center;
+    display: none;  
+    margin-left: 10px; 
+    flex-shrink: 0; 
+    width: 100%;  
+    max-width: 15em;  
+}
+
+/* Quando a edição for ativada, mostra os campos de edição */
+#registro .desc .editing input,
+#registro .desc .editing select {
+    display: inline-block;
+}
+
+#registro .nota a,
+#registro .nota input {
+    display: inline-block;
+    font-family: 'Lucida Sans Unicode', sans-serif;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #333;
+    text-transform: capitalize;
+    margin-top: 0.2em;
+    margin-left: 8.2%;
+    max-width: 100%; 
+    width: auto;
+}
+
+/* Esconde o input de edição por padrão */
+#registro .nota input {
+    display: none;
+}
+.inputNota {
+    font-family: 'Lucida Sans Unicode', sans-serif;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #333;
+    text-transform: capitalize;
+    margin-top: 0.2em;
+    margin-left: 8.2%;
+    max-width: 100%;
+    width: auto;
+}
+
+
+
+
+/*------------------------------------------------- RESPONSIVIDADE ------------------------------------------------- */
+
+/* Tela media */
+@media (max-width: 1200px) {
+    .caderno {
+        width: 50vw;    
+        height: 99vh;   
+    }
+
+    .pagina {
+        clip-path: inset(0.17em 0.55em 0em 2em); 
+    }
+    .perfil .foto {
+        margin-top: 1.2%;
+        margin-left: 6.2%;
+    }
+}
+
+/* Tela pequena */
+@media (max-width: 900px) {
+    .caderno {
+        width: 60vw;    
+        height: 99vh;   
+    }
+
+    .pagina {
+        clip-path: inset(0.17em 0.55em 0em 2em);
+    }
+    .perfil .foto {
+        margin-top: 1.2%;
+        margin-left: 7.2%;
+    }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+    .caderno {
+        width: 80vw;    
+        height: 99vh;   
+    }
+
+    .pagina {
+        clip-path: inset(0.17em 0.55em 0em 2em);
+    }
+    .perfil, .foto {
+        margin-top: 0.8%;
+        margin-left: 1.2%;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .caderno {
+        width: 90vw;    
+        height: 99vh;   
+    }
+
+    .pagina {
+        clip-path: inset(0.17em 0.55em 0em 2em); 
+    }
+    .perfil .foto {
+        margin-top: 0.8%;
+        margin-left: 7.2%;
+    }
+}
+
+/*------------------------------------------------- WIP ------------------------------------------------- */
+
+/* Estilização básica do formulário */
+footer {
+    position: absolute;
+    left: 0;
+}
+
+#fchrForm {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5em;
+    color: #ff0000;
+    background-color: rgba(255, 48, 48, 0.6); /* Fundo escuro semitransparente */
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1002; /* Garante que o botão de fechar fique acima do formulário */
+    border: 1px solid #fff; /* Borda branca ao redor do "X" */
+}
+
+
+h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.grupo-form {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.botaocustom {
+    font-family: 'Lucida Sans Unicode', sans-serif;
+    font-size: 1.1em;
+    font-weight: bold;
+    width: 100%;
+    padding: 10px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.botaocustom:hover {
+    background-color: #363636;
+}
+
+input:not(:placeholder-shown) {
+    font-family: 'Lucida Sans Unicode', sans-serif;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: white;
+    background-image: url(img/papel.jpg);
+    background-repeat: no-repeat;
+    background-size: 250%;
+    background-position: center;
+}
+
+input:placeholder-shown {
+    font-family: 'Lucida Sans Unicode', sans-serif;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: white;
+    background-image: url(img/papel.jpg);
+    background-repeat: no-repeat;
+    background-size: 250%;
+    background-position: center;
+}
+
+.overlay {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Semitransparente */
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+#form-container {
+    color: #f8f9fa;
+    font-family: 'Lucida Sans Unicode', sans-serif;
+    font-size: 1.1em;
+    font-weight: bold;
+    background-image: url(img/papel.jpg);
+    background-color: #f8f9fa;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
