@@ -78,7 +78,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const peso = localStorage.getItem('peso');
     const genero = localStorage.getItem('genero');
     const perfilImagem = localStorage.getItem('perfilImagem');
-    const nota = localStorage.getItem('nota');  // Novo item no localStorage para a nota
 
     if (nome && idade && altura && peso && genero) {
         document.getElementById("nomeDisplay").textContent = nome;
@@ -101,76 +100,108 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('perfilImagem').src = perfilImagem;
     }
 
-    if (nota) {
-        document.getElementById('notaLink').textContent = nota;
-        document.getElementById('notaLink').href = "#"; // Mantém a funcionalidade de link
-    }
+    // Botões Editar, Salvar e Apagar
+    const editarBotao = document.querySelector(".dist");
+    const apagarBotao = document.querySelector(".apagar");
 
-    // Botão Editar - Ativar os campos de edição
-    document.querySelector(".dist").addEventListener("click", function() {
-        const editar = document.getElementById("registro").classList.toggle("editar");
+    // Carregar os valores do localStorage nos campos de edição ao clicar em "✎ Editar"
+    editarBotao.addEventListener("click", function() {
+        if (editarBotao.textContent === "✎ Editar") {
+            // Modo de edição ativado
+            document.getElementById("registro").classList.add("editar");
 
-        // Campos de visualização e edição
-        const camposVisuais = [
-            "nomeDisplay", "idadeDisplay", "alturaDisplay", "pesoDisplay", "generoDisplay", "notaLink"
-        ];
-        const camposEdicao = [
-            "nomeEdit", "idadeEdit", "alturaEdit", "pesoEdit", "generoEdit", "imagemEdit", "notaEdit"
-        ];
+            // Mostrar campos de edição e esconder os campos de visualização
+            const camposVisuais = [
+                "nomeDisplay", "idadeDisplay", "alturaDisplay", "pesoDisplay", "generoDisplay", "perfilImagem"
+            ];
+            const camposEdicao = [
+                "nomeEdit", "idadeEdit", "alturaEdit", "pesoEdit", "generoEdit", "imagemEdit"
+            ];
 
-        // Alternar entre visualização e edição
-        camposVisuais.forEach(function(id) {
-            document.getElementById(id).style.display = editar ? "none" : "inline";
-        });
+            camposVisuais.forEach(function(id) {
+                document.getElementById(id).style.display = "none";
+            });
 
-        camposEdicao.forEach(function(id) {
-            document.getElementById(id).style.display = editar ? "block" : "none";
-        });
+            camposEdicao.forEach(function(id) {
+                document.getElementById(id).style.display = "block";
+            });
 
-        // Preencher os campos de edição com os valores atuais
-        if (nome) document.getElementById("nomeEdit").value = nome;
-        if (idade) document.getElementById("idadeEdit").value = idade;
-        if (altura) document.getElementById("alturaEdit").value = altura;
-        if (peso) document.getElementById("pesoEdit").value = peso;
-        if (genero) document.getElementById("generoEdit").value = genero;
-        if (nota) document.getElementById("notaEdit").value = nota; // Preencher a nota no campo de edição
-    });
+            // Preencher os campos de edição com os valores atuais
+            document.getElementById("nomeEdit").value = nome;
+            document.getElementById("idadeEdit").value = idade;
+            document.getElementById("alturaEdit").value = altura;
+            document.getElementById("pesoEdit").value = peso;
+            document.getElementById("generoEdit").value = genero;
 
-    // Editar a Nota: Substituir a tag <a> por um input (textarea) para edição de texto longo
-    document.querySelector(".dist").addEventListener("click", function() {
-        const editar = document.getElementById("registro").classList.contains("editar");
+            // Alterar o texto do botão de editar para salvar
+            editarBotao.textContent = "✓ Salvar";
+            apagarBotao.classList.add("disabled"); // Desabilitar o botão Apagar
+        } else {
+            // Modo de salvar ativado
+            // Capturar os dados dos campos de edição
+            const novoNome = document.getElementById("nomeEdit").value;
+            const novaIdade = document.getElementById("idadeEdit").value;
+            const novaAltura = document.getElementById("alturaEdit").value;
+            const novoPeso = document.getElementById("pesoEdit").value;
+            const novoGenero = document.getElementById("generoEdit").value;
+            const novaImagem = document.getElementById("imagemEdit").files[0];
 
-        // Acessar a tag <a> onde a nota está sendo exibida
-        const notaLink = document.getElementById('notaLink');
+            // Salvar os novos dados no localStorage
+            localStorage.setItem('nome', novoNome);
+            localStorage.setItem('idade', novaIdade);
+            localStorage.setItem('altura', novaAltura);
+            localStorage.setItem('peso', novoPeso);
+            localStorage.setItem('genero', novoGenero);
 
-        // Verifica se a nota está sendo editada (se já existe um input no lugar)
-        if (editar && !notaLink.querySelector('textarea')) {
-            // Criar o campo textarea para edição da nota
-            const textareaNota = document.createElement('textarea');
-            textareaNota.value = notaLink.textContent.trim(); // Preencher com o texto atual da nota
-            textareaNota.id = 'notaInput';  // Definir o ID para o textarea
-            textareaNota.classList.add('inputNota');  // Adicionar uma classe para o estilo
-            textareaNota.rows = 4;  // Definir uma altura adequada para o texto longo
-            textareaNota.style.width = '100%';  // Ajustar o tamanho do textarea para a largura completa
-            notaLink.replaceWith(textareaNota);  // Substituir a tag <a> pelo textarea
+            // Salvar a nova imagem, se houver
+            if (novaImagem) {
+                let reader = new FileReader();
+                reader.onloadend = function() {
+                    localStorage.setItem('perfilImagem', reader.result);
+                    document.getElementById('perfilImagem').src = reader.result;
+                };
+                reader.readAsDataURL(novaImagem);
+            }
 
-            // Focar no campo textarea
-            textareaNota.focus();
+            // Atualizar a exibição
+            document.getElementById("nomeDisplay").textContent = novoNome;
+            document.getElementById("idadeDisplay").textContent = novaIdade;
+            document.getElementById("alturaDisplay").textContent = novaAltura + " cm";
+            document.getElementById("pesoDisplay").textContent = novoPeso + " kg";
 
-            // Atualizar a nota no localStorage quando a edição for concluída (ao perder o foco)
-            textareaNota.addEventListener('blur', function() {
-                const novaNota = textareaNota.value.trim();
-                if (novaNota) {
-                    // Salvar no localStorage
-                    localStorage.setItem('nota', novaNota);
+            let generoText;
+            if (novoGenero === "masculino") {
+                generoText = "♂ Masculino";
+            } else if (novoGenero === "feminino") {
+                generoText = "♀ Feminino";
+            } else {
+                generoText = "🏳️‍🌈 LGBT+";
+            }
+            document.getElementById("generoDisplay").textContent = generoText;
 
-                    // Substituir o textarea novamente pela tag <a>
-                    const notaElemento = document.createElement('a');
-                    notaElemento.href = "#";
-                    notaElemento.textContent = novaNota;
-                    textareaNota.replaceWith(notaElemento);
-                }
+            // Voltar para o estado "Editar"
+            editarBotao.textContent = "✎ Editar";
+            apagarBotao.classList.remove("disabled"); // Reabilitar o botão Apagar
+
+            // Desabilitar modo de edição
+            document.getElementById("registro").classList.remove("editar");
+
+            // Esconder campos de edição e mostrar os campos de visualização
+            const camposVisuais = [
+                "nomeDisplay", "idadeDisplay", "alturaDisplay", "pesoDisplay", "generoDisplay", "perfilImagem"
+            ];
+            const camposEdicao = [
+                "nomeEdit", "idadeEdit", "alturaEdit", "pesoEdit", "generoEdit", "imagemEdit"
+            ];
+
+            camposVisuais.forEach(function(id) {
+                document.getElementById(id).style.display = "inline";
+            });
+
+            camposEdicao.forEach(function(id) {
+                document.getElementById(id).style.display = "none";
             });
         }
     });
+
 });

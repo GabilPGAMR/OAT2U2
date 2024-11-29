@@ -19,7 +19,6 @@
                         <div class="perfil">
                             <img id="perfilImagem" src="img/perfil.jpg" class="img-fluid img-thumbnail foto" alt="Perfil">
                             <div class="desc">
-                         
                                 <p id="nomeDesc" class="info">
                                     Nome: 
                                     <span id="nomeDisplay">------</span>
@@ -53,18 +52,17 @@
                             </div>
                         </div>
                     </div>
-                           
-                        <div class="divisoria-segunda">
-                            <img src="img/crop-0-0-1024-152-0-black_divider.png" alt="Segunda Divisória">
-                        </div>
-                        <div class="nota">
-                            <p>Anotações:
-                                <a id="notaLink" contenteditable="false">SUS</a>
-                            </p>
-                        </div> 
-                        <div class="divisoria">
-                            <img src="img/crop-0-0-1024-152-0-black_divider.png" alt="Divisória">
-                        </div>
+                    <div class="divisoria-segunda">
+                        <img src="img/crop-0-0-1024-152-0-black_divider.png" alt="Segunda Divisória">
+                    </div>
+                    <!-- Seção de Anotações -->
+                    <div class="nota">
+                        <p>Anotações:</p>
+                        <span id="notaDisplayText">SUS</span> <!-- Exibe as anotações salvas -->
+                        <textarea id="notaEdit" class="form-control" style="display:none;" placeholder="Digite suas anotações"></textarea> <!-- Campo de edição de anotações -->
+                    </div>
+                    <div class="divisoria">
+                        <img src="img/crop-0-0-1024-152-0-black_divider.png" alt="Divisória">
                     </div>
                 </div>
             </div>
@@ -72,7 +70,7 @@
         <div id="botoes" class="botoes">
             <button type="button" class="btn btn-dark btn-lg primario border border-white">🔍︎ Adicionar Suspeito</button>
             <button type="button" class="btn btn-success dist" data-bs-toggle="button" aria-pressed="true">✎ Editar</button>
-            <button type="button" class="btn btn-danger">✕ Apagar</button>
+            <button id="deleteButton" type="button" class="btn btn-danger apagar">✕ Apagar</button>
         </div>
 
         <!-- Formulario -->
